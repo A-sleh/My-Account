@@ -33,21 +33,23 @@ window.onscroll = () => {
 
 // open navpar in screen  phone
 menuBtn.onclick = () => {
-    isOpen = ( isOpen ? false :  true ) ;
-    fixedNav() 
+    isOpen = !isOpen;
+    changeNavigationPosition() 
 }
 
 // fixed the navbar 
-function fixedNav() {
+function changeNavigationPosition() {
     for( let i = 0 ; i < menuSpans.length ; ++ i ) {
         menuSpans[i].classList.toggle('open') ;
     }
     if( isOpen ) {
-        menuLayOut.style.cssText = 'transform: translateX(0)'
-        nav.style.cssText = 'transform: translateX(0)'
+        menuLayOut.setAttribute('aria-hidden',false)
+        nav.setAttribute('aria-hidden',false)
+        menuBtn.setAttribute('aria-expanded',true)
     }else {
-        menuLayOut.style.cssText = 'transform: translateX(150%)'
-        nav.style.cssText = 'transform: translateX(150%)'
+        menuLayOut.setAttribute('aria-hidden',true)
+        nav.setAttribute('aria-hidden',true)
+        menuBtn.setAttribute('aria-expanded',false)
     }
 }
 
